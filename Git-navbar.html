@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      :root{
+        --body-color : #E4E9F7;
+        --nav-color : #4070F4;
+        --side-nav : #010718;
+        --text-color : #fff;
+        --search-bar: #f2f2f2;
+        --search-text : #010718;
+      }
+      body{
+        height: 100vh;
+        background-color: var(--body-color);
+        font-family: sans-serif;
+      }
+      nav{
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: var(--nav-color);
+        height: 70px;
+        width: 100%;
+      }
+      nav .nav-bar{
+        position: relative;
+        max-width: 1000px;
+        height: 100%;
+        width: 100%;
+        background: var(--nav-color);
+        margin: 0px auto;
+        padding: 0px 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      nav .nav-bar span a{
+        font-size: 25px;
+        text-decoration: none;
+        color: var(--text-color);
+        font-weight: 500;
+      }
+      .nav-bar ul{
+        list-style: none;
+        display: flex;
+        align-items: center;
+      }
+      .nav-bar ul li{
+        margin: 0 5px;
+      }
+      .nav-bar ul li a{
+        text-decoration: none;
+        position: relative;
+        font-size: 17px;
+        font-weight: 400;
+        padding: 10px;
+        color: var(--text-color);
+      }
+      .nav-bar ul li a::before{
+        position: absolute;
+        content: '';
+        height: 6px;
+        width: 6px;
+        border-radius: 50%;
+        background-color: var(--text-color);
+        left: 50%;
+        bottom: 0;
+        transform: translateX(50%);
+        opacity: 0;
+        transition: all .3s ease;
+      }
+      .nav-bar ul li:hover a::before{
+        opacity: 1;
+      }
+      .nav-bar .se-dr{
+        display: flex;
+        align-items: center;
+      }
+      .se-dr .dark,
+      .se-dr .search{
+        height: 40px;
+        width: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* background-color: red; */
+        margin: 0 5px;
+      }
+      .dark i,
+      .search i {
+        position: absolute;
+        color: var(--text-color);
+        font-size: 22px;
+        cursor: pointer;
+        transition: all .3s ease;
+      }
+      .dark .sun,
+      .search .cross{
+        opacity: 0;
+      }
+      .dark.active .sun{
+        opacity: 1;
+      }
+      .dark.active .moon{
+        opacity: 0;
+      }
+      .search.active .cross{
+        opacity: 1;
+      }
+      .search.active .icon{
+        opacity: 0;
+      }
+      .se-dr .field{
+        position: absolute;
+        bottom: -70px;
+        right: 12px;
+        background-color: var(--nav-color);
+        height: 50px;
+        width: 300px;
+        display: flex;
+        align-items: center;
+        padding: 3px;
+        border-radius: 6px;
+        box-shadow: 0 5px 5px rgb(0, 0, 0 , .5);
+        display: none;
+      }
+      .se-dr .field.active{
+          transition: all .3s ease;
+          opacity: 1;
+      }
+      .se-dr .field::before{
+        content: '';
+        position: absolute;
+        height: 12px;
+        width: 12px;
+        top: -4px;
+        right: 30px;
+        background-color: var(--nav-color);
+        transform: rotate(45deg);
+        z-index: -1;
+      }
+      .field input{
+        width: 100%;
+        height: 100%;
+        padding: 0 45px 0 15px;
+        border: none;
+        border-radius: 4px;
+        outline: none;
+        color: var(--search-bar);
+      }
+      .field i{
+        position: absolute;
+        color: var(--nav-color);
+        right: 15px;
+        font-size: 22px;
+        cursor: pointer;
+        bottom: 14px;
+      }
+     .menu .logo-tec{
+        display: none;
+      }
+      .dot{
+        display: none;
+      }
+      .dot .bar{
+        font-size: 24px;
+        color: var(--text-color);
+      }
+
+
+      @media (max-width:750px) {
+        .menu{
+          position: fixed;
+          width: 320px;
+          height: 100%;
+          top: 0;
+          left: -200%;
+          background-color: rgb(0, 0, 22);
+          padding: 30px;
+          z-index: 100;
+          transition: all .4s ease;
+        }
+        .menu .logo-tec{
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .logo-tec .cross{
+          color: var(--text-color);
+          font-size: 24px;
+          cursor: pointer;
+        }
+        .nav-bar ul{
+          height: 100%;
+         flex-direction: column;
+         padding-top: 60px;
+      }
+      .nav-bar ul li a{
+       display: block;
+       margin-top: 20px;
+      }
+      .dot{
+        display: block;
+      }
+      }
+    </style>
+
+</head>
+<body >
+    <nav id="nav">
+   <div class="nav-bar">
+    <div class="dot">
+      <i class="fa-solid fa-bars bar"></i>
+    </div>
+    <span><a href="#">Ahmad</a></span>
+
+    <dav class="menu">
+      <div class="logo-tec">
+        <span><a href="#">Ahmad</a></span>
+        <i class="fa-solid fa-xmark cross"></i>
+      </div>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contect</a></li>
+            <li><a href="#">Servics</a></li>
+            <li><a href="#">More Info</a></li>
+        </ul>
+    </dav>
+
+    <div class="se-dr">
+       <div class="dark">
+        <i class="fa-regular fa-moon moon"></i>
+        <i class="fa-regular fa-sun sun"></i>
+       </div>
+       <div class="search">
+        <i class="fa-solid fa-xmark cross"></i>
+        <i class="fa-solid fa-magnifying-glass icon"></i>
+       </div>
+       <div class="field">
+        <input type="text" placeholder="Search ">
+        <i class="fa-solid fa-magnifying-glass icon"></i>
+      </div>
+    </div>
+
+   </div>
+</nav>
+
+
+<script>
+    var body = document.querySelector("body") , 
+    darkBtn =  document.querySelector(".dark"),
+    search = document.querySelector(".search"),
+    nav = document.querySelector("nav"),
+    field = document.querySelector(".field") ,
+    input = document.querySelector("input"),
+    close = document.querySelector(".cross"),
+    bar= document.querySelector(".bar"),
+    tec = document.querySelector(".menu"),
+    nav = document.getElementById("nav");
+      
+      darkBtn.addEventListener("click" , function() {
+        darkBtn.classList.toggle("active");
+        if(darkBtn.classList.contains("active")){
+            body.style.backgroundColor = "black";
+            input.style.backgroundColor = "black";
+        }
+        else{
+            body.style.backgroundColor = "#E4E9F7";
+            input.style.backgroundColor = "white";
+        } 
+      })
+      bar.addEventListener("click" , function(){
+       tec.style.left = "0";
+      })
+      close.addEventListener("click" , function(){
+        tec.style.left = "-200%";
+      })
+
+
+      search.addEventListener("click" , function() {
+        search.classList.toggle("active"); 
+        if(search.classList.contains("active")){
+           field.style.display = "block";
+        }
+        else{
+          field.style.display = "none";
+        }      
+      })
+</script>
+</body>
+</html>
